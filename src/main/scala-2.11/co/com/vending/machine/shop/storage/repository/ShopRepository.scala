@@ -12,8 +12,19 @@ import scala.concurrent.{ExecutionContext, Future}
 case class ShopRepository(mockDao:MockDaoProducts) {
 
 
+  /**
+    * fetch all the products in the vending machine
+    * @param ec: System's execution context
+    * @return
+    */
   def getAllProducts(implicit  ec: ExecutionContext):Future[List[Product]] = mockDao.findAll.map( _.toList.map(Product(_)))
 
+  /**
+    * Get the selected product
+    * @param code: Product id
+    * @param ec: System's execution context
+    * @return
+    */
   def getProductByCode(code:String)(implicit  ec: ExecutionContext):Future[Option[Product]] = mockDao.findById(code).map(_.map(Product(_)))
 
 }

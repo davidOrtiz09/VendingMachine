@@ -14,7 +14,7 @@ import scala.concurrent.duration.Duration
 trait BootedCore extends Core {
 
   implicit val appConfig: AppConfig  = AppConfig(ConfigFactory.load())
-  implicit val system: ActorSystem = ActorSystem("MainVendingMachine")
+  implicit val system: ActorSystem = ActorSystem("MainVendingMachine-System")
 
   sys.addShutdownHook {
     Await.ready(system.terminate(), Duration.Inf)
