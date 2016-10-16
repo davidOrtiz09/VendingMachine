@@ -190,7 +190,5 @@ $RECYCLE.BIN/
 ### Custom
 data/
 logs/
-massive-queries/
-projectFilesBackup/
 snapshots/
 journal/
