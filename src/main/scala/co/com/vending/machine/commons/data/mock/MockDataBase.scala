@@ -5,16 +5,15 @@ import co.com.vending.machine.shop.storage.dto.ProductDTO
 import scala.util.{Failure, Success, Try}
 
 /**
-  * Object thats load mock data from a file
+  * Çlass thats load mock data from a file
   */
-object MockDataBase {
+case class MockDataBase (fileName: String) {
 
   /**
     * Load the mock data from a file
-    * @param fileName: Name of the data file
     * @return
     */
-  def loadAllItems(fileName:String) = {
+  def loadAllItems = {
    val loadData =  loadMockDataFile(fileName)
     loadData match{
       case Success(dtoList) => dtoList
@@ -25,12 +24,12 @@ object MockDataBase {
 
   /**
     * Load de data file
-    * @param fileName: Name of the data file
+    * @param fileNameMock: Name of the data file
     * @return
     */
-  private def loadMockDataFile(fileName:String) = {
+  private def loadMockDataFile(fileNameMock:String) = {
     Try {
-  val source = scala.io.Source.fromFile(fileName)
+  val source = scala.io.Source.fromFile(fileNameMock)
   val lines = source.getLines().toList
       convertLinesToDTO(lines)
       }

@@ -7,4 +7,7 @@ import com.typesafe.config.Config
   */
 case class AppConfig(config:Config) {
 
+
+ lazy  val  dataBaseFileName = config.getString("db.fileName")
+
 }

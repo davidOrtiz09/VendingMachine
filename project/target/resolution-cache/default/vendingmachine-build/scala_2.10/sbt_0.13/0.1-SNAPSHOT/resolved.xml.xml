@@ -4,7 +4,7 @@
 		module="vendingmachine-build"
 		revision="0.1-SNAPSHOT"
 		status="integration"
-		publication="20161015154331"
+		publication="20161016132051"
 		e:sbtVersion="0.13" e:scalaVersion="2.10"
 	>
 		<description>
