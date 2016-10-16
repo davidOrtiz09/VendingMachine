@@ -1,11 +1,27 @@
 package co.com.vending.machine.core
 
 import akka.actor.ActorSystem
+import co.com.vending.machine.aggregate.VendingMachineMaster
 import co.com.vending.machine.commons.config.AppConfig
+import co.com.vending.machine.commons.data.db.DBCore
 import com.typesafe.config.ConfigFactory
 
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
+
+/**
+  * Initialaze all the main actors of the system
+  */
+trait ActorsCore {
+  this: Core with BootedCore with DBCore =>
+
+  private val vendingMachineMasterProps = VendingMachineMaster.props(vendingMachineRepository)
+
+  private val vendingMachineMasterName = appConfig.vendingMachineMasterName
+
+  val vendingMachineMaster = system.actorOf(vendingMachineMasterProps , vendingMachineMasterName)
+
+}
 
 
 /**
