@@ -1,0 +1,5 @@
+145692,coke,15
+845327,pepsi,15
+761234,ham & cheese sandwich,30
+789991,peanut,5
+100012,chocolate bar,10
