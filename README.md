@@ -35,3 +35,12 @@ code , name , cost
  - 789991,peanut,5
  - 100012,chocolate bar,10
 
+ ## API Routes
+
+ |   Route            |   Http         |
+ |   -------------    |   -------------|
+ |   (/product)                                                                  |    GET   |
+ |   (/product/:code)                                                            |    GET   |
+ |   (/product/pay)                                                              |    POST  |
+
+
