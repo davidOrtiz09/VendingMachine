@@ -6,7 +6,7 @@ import co.com.vending.machine.commons.config.AppConfig
 import co.com.vending.machine.commons.data.mock.MockDataBase
 import co.com.vending.machine.shop.storage.dao.MockDaoProducts
 import co.com.vending.machine.shop.storage.repository.ShopRepository
-import co.com.vending.machine.shop.ws.ProductsRoute
+import co.com.vending.machine.shop.ws.{PaysRoute, ProductsRoute}
 import com.typesafe.config.ConfigFactory
 
 /**
@@ -36,5 +36,6 @@ object VendingMachineEscenario {
 
   val productRoute = ProductsRoute(vendingMachineRepository , vendingMachineMaster).route
   val productRouteFake = ProductsRoute(vendingMachineRepositoryFake , vendingMachineMaster).route
+
 
 }

@@ -25,7 +25,7 @@ case class PaysRoute()(implicit appConfig: AppConfig, val system: ActorSystem)
   private val payRoute = appConfig.payRoute
   private val productRoute = appConfig.productRoute
   private val currencyRules: List[Int] = appConfig.currencyRules.toList.map(_.toInt)
-  private implicit val timeOut = Timeout(5.seconds)
+  private implicit val timeOut = Timeout(20.seconds)
 
   val route: Route = post {
     import akka.pattern.ask

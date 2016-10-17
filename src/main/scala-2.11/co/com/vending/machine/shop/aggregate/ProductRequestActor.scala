@@ -36,7 +36,7 @@ case class ProductRequestActor(productCost: Int , productName:String)(implicit a
     val name = self.path.name
     val debt = productCost - paySoFar
 
-    log.info(" Me the vending machine I receive : " + value + "coins")
+    log.info(" Me the vending machine I receive : " + value + " coins")
 
     if(paySoFar < productCost) sender ! PayResponse(name,debt ,appConfig.payNotEnough ,0 ) else {
       sender ! PayResponse(name, 0 , appConfig.paySuccess + " " + productName , debt * (-1))
