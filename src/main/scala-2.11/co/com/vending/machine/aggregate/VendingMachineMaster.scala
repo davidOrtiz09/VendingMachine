@@ -14,5 +14,7 @@ object VendingMachineMaster{
 
 case class VendingMachineMaster(vendingRepo: ShopRepository) extends Actor with ActorLogging {
 
-  override def receive: Receive = ???
+  override def receive: Receive = {
+    case _ => log.info("JUst an example")
+  }
 }

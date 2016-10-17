@@ -2,7 +2,7 @@ package co.com.vending.machine.shop.storage.repository
 
 
 import co.com.vending.machine.shop.storage.dao.MockDaoProducts
-import co.com.vending.machine.shop.entities.Product
+import co.com.vending.machine.shop.entities._
 
 import scala.concurrent.{ExecutionContext, Future}
 
@@ -17,7 +17,7 @@ case class ShopRepository(mockDao:MockDaoProducts) {
     * @param ec: System's execution context
     * @return
     */
-  def getAllProducts(implicit  ec: ExecutionContext):Future[List[Product]] = mockDao.findAll.map( _.toList.map(Product(_)))
+  def getAllProducts(implicit  ec: ExecutionContext):Future[List[Product]] = mockDao.findAll.map( _.toList.map( x => ProductCompanion.apply(x)))
 
   /**
     * Get the selected product
@@ -25,6 +25,6 @@ case class ShopRepository(mockDao:MockDaoProducts) {
     * @param ec: System's execution context
     * @return
     */
-  def getProductByCode(code:String)(implicit  ec: ExecutionContext):Future[Option[Product]] = mockDao.findById(code).map(_.map(Product(_)))
+  def getProductByCode(code:String)(implicit  ec: ExecutionContext):Future[Option[Product]] = mockDao.findById(code).map(_.map( x => ProductCompanion.apply(x)))
 
 }

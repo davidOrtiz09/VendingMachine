@@ -2,12 +2,13 @@ package co.com.vending.machine.api
 
 import akka.actor.{ActorRef, ActorSystem}
 import akka.http.scaladsl.Http
+import akka.http.scaladsl.server.Directives._
 import akka.stream.{ActorMaterializer, ActorMaterializerSettings}
-import co.com.vending.machine.commons.api.CorsSupport
 import co.com.vending.machine.commons.config.AppConfig
 import co.com.vending.machine.commons.data.db.DBCore
 import co.com.vending.machine.core.{ActorsCore, BootedCore, Core}
 import co.com.vending.machine.shop.storage.repository.ShopRepository
+import co.com.vending.machine.shop.ws.ProductsRoute
 
 
 
@@ -27,7 +28,7 @@ trait ApiCore {
 /**
   * Web server that receive all the requests of the vending machine
   */
-case class WebServer(vendingMachineRepo: ShopRepository , vendingMachineMaster: ActorRef)(implicit system: ActorSystem, val appConfig: AppConfig) extends CorsSupport {
+case class WebServer(vendingMachineRepo: ShopRepository , vendingMachineMaster: ActorRef)(implicit system: ActorSystem, val appConfig: AppConfig)  {
 
 
   val host = appConfig.webServerHost
@@ -36,10 +37,10 @@ case class WebServer(vendingMachineRepo: ShopRepository , vendingMachineMaster: 
 
   implicit private val actorMat: ActorMaterializer = ActorMaterializer(ActorMaterializerSettings(system))
 
-  /*private val routes = Seq(
-    //PersonaNaturalRoute(consultasSoiRepo, consultasPublisherPath), PersonaJuridicaRoute(consultasSoiRepo, consultasPublisherPath),
-    //MassivePersonaNaturalService(consultasMasivasMasterProxy), MassivePersonaJuridicaService(consultasMasivasMasterProxy)
+  private val routes = Seq(
+    ProductsRoute(vendingMachineRepo , vendingMachineMaster)
   ).map(_.route).reduceLeft(_ ~ _)
 
-  Http().bindAndHandle(corsHandler(routes), host, port)*/
+  println(s"Server online at http://$host:$port ...")
+  Http().bindAndHandle(routes, host, port)
 }

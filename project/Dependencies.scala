@@ -13,10 +13,10 @@ object Dependencies {
 
     import Versions._
 
-    val akkaHttp: ModuleID         = "com.typesafe.akka" %% "akka-http-experimental" % akkaHttpVersion
-    val akka: ModuleID             = "com.typesafe.akka" %% "akka-actor"             % akkaVersion
-    val akkaHttpJson4s: ModuleID   = "de.heikoseeberger" %% "akka-http-json4s"       % json4sVersion
-    val configUtil: ModuleID       = "com.typesafe"       % "config"                  % utilConfigVersion
+    val akkaHttp: ModuleID         = "com.typesafe.akka" %% "akka-http-experimental"                   % akkaHttpVersion
+    val akka: ModuleID             = "com.typesafe.akka" %% "akka-actor"                               % akkaVersion
+    val akkaHttpSpray: ModuleID   = "com.typesafe.akka" %% "akka-http-spray-json-experimental"         % akkaHttpSprayVersion
+    val configUtil: ModuleID       = "com.typesafe"       % "config"                                   % utilConfigVersion
 
   }
 
@@ -37,7 +37,7 @@ object Dependencies {
   import Dependencies.Compile._
   import Dependencies.TestDep._
 
-  val vendingMachineLibs: Seq[ModuleID]  = Seq(akkaHttp, akka, akkaHttpJson4s , configUtil)
+  val vendingMachineLibs: Seq[ModuleID]  = Seq(akkaHttp, akka, akkaHttpSpray , configUtil)
   val testLibs: Seq[ModuleID] = Seq(akkaTestKit, akkaHttpTestKit,scalatestLib)
 
 }

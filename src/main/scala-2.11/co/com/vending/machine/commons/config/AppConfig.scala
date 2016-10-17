@@ -16,5 +16,7 @@ case class AppConfig(config:Config) {
 
  lazy val  vendingMachineMasterName = config.getString("Actors.vending-machine-master")
 
+ lazy val productRoute = config.getString("ws.Routes.all-products")
+
 
 }
