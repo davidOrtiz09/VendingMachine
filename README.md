@@ -40,7 +40,7 @@ code , name , cost
  |   Route            |   Http         |
  |   -------------    |   -------------|
  |   (/product)                                                                  |    GET   |
- |   (/product/:code)                                                            |    GET   |
+ |   (/product/:productCode)                                                     |    GET   |
  |   (/product/pay)                                                              |    POST  |
 
  #/product Example Response
@@ -61,7 +61,7 @@ code , name , cost
  }
  ```
 
-  #/product/:code Example Response
+  #/product/:productCode Example Response
  ```json
   {
     "idRequest": "b63ed342-03ec-4db9-93b6-3b731dbaee57",
@@ -77,7 +77,7 @@ code , name , cost
     }
     ```
 
-   #/product/pay Example Response
+  #/product/pay Example Response
      ```json
       {
               "idRequest": "9d6d4a5a-06eb-4a43-92e2-1a373bc071dd",
@@ -86,6 +86,16 @@ code , name , cost
               "cashBack": 0
       }
       ```
+
+
+  ## How it works ?
+
+    - First, look for all the products in the vending machine (/product).
+
+    - Second, select the product you want (/product/:productCode).
+      This will give you a requestId that you have to use to pay the product.
+
+    - Finally, pay the product value following the currency restrictions and using the requestId (/product/pay)
 
 
 
