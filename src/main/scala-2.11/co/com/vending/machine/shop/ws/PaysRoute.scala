@@ -1,16 +1,16 @@
 package co.com.vending.machine.shop.ws
 
-import akka.actor.{ActorRef, ActorSelection, ActorSystem}
+import akka.actor.ActorSystem
 import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.server._
 import co.com.vending.machine.commons.config.AppConfig
-import co.com.vending.machine.shop.entities.{PayRequest, PayResponse}
+import co.com.vending.machine.shop.entities.{CancelResposne, PayRequest, PayResponse}
 
 import scala.collection.JavaConversions._
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
 import akka.util.Timeout
-import co.com.vending.machine.shop.aggregate.ProductRequestActor.Pay
+import co.com.vending.machine.shop.aggregate.ProductRequestActor.{CancelOrder, Pay}
 
 import scala.concurrent.duration._
 
@@ -25,7 +25,7 @@ case class PaysRoute()(implicit appConfig: AppConfig, val system: ActorSystem)
   private val payRoute = appConfig.payRoute
   private val productRoute = appConfig.productRoute
   private val currencyRules: List[Int] = appConfig.currencyRules.toList.map(_.toInt)
-  private implicit val timeOut = Timeout(20.seconds)
+  private implicit val timeOut = Timeout(5.seconds)
 
   val route: Route = post {
     import akka.pattern.ask

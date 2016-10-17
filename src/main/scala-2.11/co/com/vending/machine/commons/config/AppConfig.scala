@@ -26,4 +26,5 @@ case class AppConfig(config:Config) {
 
  lazy val payNotEnough = config.getString("msg.product-not-ready")
 
+
 }

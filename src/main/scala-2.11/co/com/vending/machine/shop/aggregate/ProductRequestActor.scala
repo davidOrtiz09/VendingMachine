@@ -3,7 +3,7 @@ package co.com.vending.machine.shop.aggregate
 import akka.actor.{Actor, ActorLogging, PoisonPill, Props}
 import co.com.vending.machine.commons.config.AppConfig
 import co.com.vending.machine.shop.aggregate.ProductRequestActor.{CancelOrder, Finish, Pay}
-import co.com.vending.machine.shop.entities.PayResponse
+import co.com.vending.machine.shop.entities.{CancelResposne, PayResponse}
 
 
 /**
@@ -27,6 +27,8 @@ case class ProductRequestActor(productCost: Int , productName:String)(implicit a
   override def receive: Receive = {
     case msg:Pay => process(msg)
     case Finish => self ! PoisonPill
+    case CancelOrder => sender() ! CancelResposne("Here is your money back !" , paySoFar)
+                         self ! Finish
     case _ => log.info("Unknown message !")
   }
 
