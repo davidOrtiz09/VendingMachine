@@ -61,7 +61,7 @@ code , name , cost
  }
  ```
 
-  #/product/:productCode Example Response
+ #/product/:productCode Example Response
  ```json
   {
     "idRequest": "b63ed342-03ec-4db9-93b6-3b731dbaee57",
