@@ -24,7 +24,6 @@ Vending machine emulator using Akka actors
   - Only one currency is accepted
   - Only this values are accepted (10 , 5) to insert in the vending machine
 
-
 ## Products Available
 
 code , name , cost
@@ -35,7 +34,7 @@ code , name , cost
  - 789991,peanut,5
  - 100012,chocolate bar,10
 
- ## API Routes
+## API Routes
 
  |   Route            |   Http         |
  |   -------------    |   -------------|
@@ -43,7 +42,7 @@ code , name , cost
  |   (/product/:productCode)                                                     |    GET   |
  |   (/product/pay)                                                              |    POST  |
 
- #/product Example Response
+# /product Example Response
 ```json
  {
    [
@@ -61,7 +60,7 @@ code , name , cost
  }
  ```
 
- #/product/:productCode Example Response
+# /product/:productCode Example Response
  ```json
   {
     "idRequest": "b63ed342-03ec-4db9-93b6-3b731dbaee57",
@@ -69,7 +68,7 @@ code , name , cost
   }
   ```
 
-  #/product/pay Example Request
+# /product/pay Example Request
    ```json
     {
       	"requestId" : "b63ed342-03ec-4db9-93b6-3b731dbaee57",
@@ -77,7 +76,7 @@ code , name , cost
     }
     ```
 
-  #/product/pay Example Response
+# /product/pay Example Response
      ```json
       {
               "idRequest": "9d6d4a5a-06eb-4a43-92e2-1a373bc071dd",
@@ -87,8 +86,9 @@ code , name , cost
       }
       ```
 
+## How it works ?
 
-  ## How it works ?
+ To start the app just digit sbt run in the project directory, the app will run in 0.0.0.0:8080
 
     - First, look for all the products in the vending machine (/product).
 
