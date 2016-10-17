@@ -9,7 +9,7 @@ trait JsonSupport extends SprayJsonSupport with DefaultJsonProtocol{
   implicit val productFormat = jsonFormat3(Product)
   implicit val productRequestFormat = jsonFormat2(ProductRequest)
   implicit val payRequestFormat = jsonFormat2(PayRequest)
-  implicit val payResponseFormat = jsonFormat3(PayResponse)
+  implicit val payResponseFormat = jsonFormat4(PayResponse)
 
 
 }

@@ -22,5 +22,8 @@ case class AppConfig(config:Config) {
 
  lazy val currencyRules = config.getStringList("Currency.rules")
 
+ lazy val paySuccess = config.getString("msg.product-ready")
+
+ lazy val payNotEnough = config.getString("msg.product-not-ready")
 
 }

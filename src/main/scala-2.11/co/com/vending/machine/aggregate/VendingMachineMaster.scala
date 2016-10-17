@@ -4,6 +4,7 @@ import java.util.UUID
 
 import akka.actor.{Actor, ActorLogging, Props}
 import co.com.vending.machine.aggregate.VendingMachineMaster.SelectProduct
+import co.com.vending.machine.commons.config.AppConfig
 import co.com.vending.machine.shop.aggregate.ProductRequestActor
 import co.com.vending.machine.shop.storage.repository.ShopRepository
 
@@ -15,11 +16,11 @@ object VendingMachineMaster{
 
 
   case class SelectProduct(code:String , productCost:Int , productName:String)
-  def props(vendingRepo: ShopRepository) = Props(VendingMachineMaster(vendingRepo))
+  def props(vendingRepo: ShopRepository)(implicit appConfig: AppConfig) = Props(VendingMachineMaster(vendingRepo))
 }
 
 
-case class VendingMachineMaster(vendingRepo: ShopRepository) extends Actor with ActorLogging {
+case class VendingMachineMaster(vendingRepo: ShopRepository)(implicit appConfig:AppConfig) extends Actor with ActorLogging {
 
   override def receive: Receive = {
     case  msg: SelectProduct  => process(msg)

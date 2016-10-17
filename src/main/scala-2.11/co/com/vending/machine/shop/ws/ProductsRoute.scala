@@ -13,7 +13,13 @@ import co.com.vending.machine.shop.storage.repository.ShopRepository
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
 
-
+/**
+  * Product's routes
+  * @param vendingMachineRepo: main repo of the vending machine
+  * @param vendingMachineMaster: Reference to the vending machine actor
+  * @param appConfig: app utils
+  * @param system: Actor system reference
+  */
 case class ProductsRoute(vendingMachineRepo: ShopRepository , vendingMachineMaster: ActorRef)(implicit appConfig: AppConfig, val system: ActorSystem)
   extends Directives with JsonSupport {
 

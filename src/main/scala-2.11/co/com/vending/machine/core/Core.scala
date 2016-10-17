@@ -15,6 +15,7 @@ import scala.concurrent.duration.Duration
 trait ActorsCore {
   this: Core with BootedCore with DBCore =>
 
+  import appConfig._
   private val vendingMachineMasterProps = VendingMachineMaster.props(vendingMachineRepository)
 
   private val vendingMachineMasterName = appConfig.vendingMachineMasterName

@@ -10,13 +10,17 @@ import scala.collection.JavaConversions._
 import scala.concurrent.Future
 import scala.util.{Failure, Success}
 import akka.util.Timeout
+import co.com.vending.machine.shop.aggregate.ProductRequestActor.Pay
 
 import scala.concurrent.duration._
 
-
+/**
+  * Pay's routes
+  * @param appConfig: app utils
+  * @param system: Actor system reference
+  */
 case class PaysRoute()(implicit appConfig: AppConfig, val system: ActorSystem)
   extends Directives with JsonSupport {
-
 
   private val payRoute = appConfig.payRoute
   private val productRoute = appConfig.productRoute
@@ -30,7 +34,7 @@ case class PaysRoute()(implicit appConfig: AppConfig, val system: ActorSystem)
         val currencyValidation = currencyRules.find(_ == payReq.pay)
         currencyValidation match{
           case Some(res) => val ticketSelection = system.actorSelection(s"/user/${appConfig.vendingMachineMasterName}/${payReq.requestId}")
-            val futurePayResponse: Future[PayResponse] = ask(ticketSelection, "ping").mapTo[PayResponse]
+            val futurePayResponse: Future[PayResponse] = ask(ticketSelection, Pay(res)).mapTo[PayResponse]
             onComplete(futurePayResponse){
               case Success(products) => complete(products)
               case Failure(err) =>  complete(StatusCodes.custom(404 ,"NOT PRODUCT REQUEST AVAILABLE","NOT PRODUCT REQUEST AVAILABLE"))
