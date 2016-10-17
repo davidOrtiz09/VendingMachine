@@ -1,10 +1,12 @@
 package co.com.vending.machine.shop.ws
 
+import java.util.UUID
+
 import akka.http.scaladsl.model.StatusCodes
 import akka.http.scaladsl.testkit.ScalatestRouteTest
 import org.scalatest.{Matchers, WordSpec}
 import co.com.vending.machine.VendingMachineEscenario._
-import co.com.vending.machine.shop.entities.Product
+import co.com.vending.machine.shop.entities.{Product, ProductRequest}
 /**
   * Product Route test case
   */
@@ -18,13 +20,16 @@ class ProductRouteTest extends WordSpec with Matchers with ScalatestRouteTest wi
     val products5 = Product("100012","chocolate bar",10)
 
     val products = List(products1,products2,products3,products4,products5)
+    val requestId = UUID.randomUUID().toString
+
+    val productRequest = ProductRequest(requestId,products1.cost)
 
     "return a product for GET requests to the root path" in {
       val cokeCode = "145692"
       // tests:
       Get("/" + appConfig.productRoute + "/" + cokeCode) ~> productRoute ~> check {
         status === StatusCodes.OK
-        responseAs[Product] shouldEqual products1
+        responseAs[ProductRequest].copy(idRequest = requestId) shouldEqual productRequest
       }
     }
 

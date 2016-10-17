@@ -18,5 +18,9 @@ case class AppConfig(config:Config) {
 
  lazy val productRoute = config.getString("ws.Routes.all-products")
 
+ lazy val payRoute = config.getString("ws.Routes.pay")
+
+ lazy val currencyRules = config.getStringList("Currency.rules")
+
 
 }
