@@ -36,11 +36,11 @@ code , name , cost
 
 ## API Routes
 
- |   Route            |   Http         |
- |   -------------    |   -------------|
- |   (/product)                                                                  |    GET   |
- |   (/product/:productCode)                                                     |    GET   |
- |   (/product/pay)                                                              |    POST  |
+|   Route            |   Http         |
+|   -------------     |   -------------  |
+|   (/product)                                                                  |    GET   |
+|   (/product/:productCode)                                                     |    GET   |
+|   (/product/pay)                                                              |    POST  |
 
 # /product Example Response
 ```json
