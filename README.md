@@ -43,4 +43,51 @@ code , name , cost
  |   (/product/:code)                                                            |    GET   |
  |   (/product/pay)                                                              |    POST  |
 
+ #/product Example Response
+```json
+ {
+   [
+     {
+       "code": "145692",
+       "name": "coke",
+       "cost": 15
+     },
+     {
+       "code": "845327",
+       "name": "pepsi",
+       "cost": 15
+     }
+   ]
+ }
+ ```
+
+  #/product/:code Example Response
+ ```json
+  {
+    "idRequest": "b63ed342-03ec-4db9-93b6-3b731dbaee57",
+    "productCost": 15
+  }
+  ```
+
+  #/product/pay Example Request
+   ```json
+    {
+      	"requestId" : "b63ed342-03ec-4db9-93b6-3b731dbaee57",
+      	"pay": 5
+    }
+    ```
+
+   #/product/pay Example Response
+     ```json
+      {
+              "idRequest": "9d6d4a5a-06eb-4a43-92e2-1a373bc071dd",
+              "debt": 10,
+              "message": "Insert more coins",
+              "cashBack": 0
+      }
+      ```
+
+
+
+
 
